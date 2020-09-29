@@ -1,9 +1,9 @@
 # MIT-Big-Data-Analytics
 
-### Python MongoDB
+### 1. Python MongoDB
 #### Topic : Blog Site
 
-### Map Reduce
+### 2. Map Reduce
 #### Topic Word Count
 1. Default word count program in Hadoop Map Reduce
 2. Python Programming Streaming in Hadoop

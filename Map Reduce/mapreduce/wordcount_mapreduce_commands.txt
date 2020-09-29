@@ -1,0 +1,202 @@
+[cloudera@quickstart mapreduce]$ gedit inputdata.txt
+[cloudera@quickstart mapreduce]$ cd /usr/lib/hadoop-0.20-mapreduce/
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ ls
+
+bin                                      hadoop-examples-mr1.jar
+CHANGES.txt                              hadoop-test-2.6.0-mr1-cdh5.13.0.jar
+cloudera                                 hadoop-test-mr1.jar
+conf                                     hadoop-tools-2.6.0-mr1-cdh5.13.0.jar
+contrib                                  hadoop-tools-mr1.jar
+example-confs                            include
+hadoop-ant-2.6.0-mr1-cdh5.13.0.jar       lib
+hadoop-ant-mr1.jar                       LICENSE.txt
+hadoop-core-2.6.0-mr1-cdh5.13.0.jar      NOTICE.txt
+hadoop-core-mr1.jar                      README.txt
+hadoop-examples-2.6.0-mr1-cdh5.13.0.jar  sbin
+hadoop-examples.jar                      webapps
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop jar hadoop-examples-mr1.jar 
+
+An example program must be given as the first argument.
+Valid program names are:
+  aggregatewordcount: An Aggregate based map/reduce program that counts the words in the input files.
+  aggregatewordhist: An Aggregate based map/reduce program that computes the histogram of the words in the input files.
+  bbp: A map/reduce program that uses Bailey-Borwein-Plouffe to compute exact digits of Pi.
+  dbcount: An example job that count the pageview counts from a database.
+  distbbp: A map/reduce program that uses a BBP-type formula to compute exact bits of Pi.
+  grep: A map/reduce program that counts the matches of a regex in the input.
+  join: A job that effects a join over sorted, equally partitioned datasets
+  multifilewc: A job that counts words from several files.
+  pentomino: A map/reduce tile laying program to find solutions to pentomino problems.
+  pi: A map/reduce program that estimates Pi using a quasi-Monte Carlo method.
+  randomtextwriter: A map/reduce program that writes 10GB of random textual data per node.
+  randomwriter: A map/reduce program that writes 10GB of random data per node.
+  secondarysort: An example defining a secondary sort to the reduce.
+  sort: A map/reduce program that sorts the data written by the random writer.
+  sudoku: A sudoku solver.
+  teragen: Generate data for the terasort
+  terasort: Run the terasort
+  teravalidate: Checking results of terasort
+  wordcount: A map/reduce program that counts the words in the input files.
+  wordmean: A map/reduce program that counts the average length of the words in the input files.
+  wordmedian: A map/reduce program that counts the median length of the words in the input files.
+  wordstandarddeviation: A map/reduce program that counts the standard deviation of the length of the words in the input files.
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -put /home/cloudera/Desktop/mapreduce/inputdata.txt /
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -cat /inputdata.txt
+
+I am studying in MIT
+MIT is hosting me
+MIT Infrastructure is amazing
+MIT Professors are cool
+I am privilged to learn from Professors of MIT
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop jar hadoop-examples-mr1.jar wordcount /inputdata.txt /wordCountOut
+
+20/09/28 23:56:49 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+20/09/28 23:56:50 INFO input.FileInputFormat: Total input paths to process : 1
+20/09/28 23:56:50 INFO mapreduce.JobSubmitter: number of splits:1
+20/09/28 23:56:50 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1601361272730_0001
+20/09/28 23:56:51 INFO impl.YarnClientImpl: Submitted application application_1601361272730_0001
+20/09/28 23:56:51 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1601361272730_0001/
+20/09/28 23:56:51 INFO mapreduce.Job: Running job: job_1601361272730_0001
+20/09/28 23:57:03 INFO mapreduce.Job: Job job_1601361272730_0001 running in uber mode : false
+20/09/28 23:57:03 INFO mapreduce.Job:  map 0% reduce 0%
+20/09/28 23:57:11 INFO mapreduce.Job:  map 100% reduce 0%
+20/09/28 23:57:20 INFO mapreduce.Job:  map 100% reduce 100%
+20/09/28 23:57:20 INFO mapreduce.Job: Job job_1601361272730_0001 completed successfully
+20/09/28 23:57:20 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=219
+		FILE: Number of bytes written=287639
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=250
+		HDFS: Number of bytes written=141
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=5818
+		Total time spent by all reduces in occupied slots (ms)=6103
+		Total time spent by all map tasks (ms)=5818
+		Total time spent by all reduce tasks (ms)=6103
+		Total vcore-milliseconds taken by all map tasks=5818
+		Total vcore-milliseconds taken by all reduce tasks=6103
+		Total megabyte-milliseconds taken by all map tasks=5957632
+		Total megabyte-milliseconds taken by all reduce tasks=6249472
+	Map-Reduce Framework
+		Map input records=5
+		Map output records=26
+		Map output bytes=244
+		Map output materialized bytes=219
+		Input split bytes=110
+		Combine input records=26
+		Combine output records=18
+		Reduce input groups=18
+		Reduce shuffle bytes=219
+		Reduce input records=18
+		Reduce output records=18
+		Spilled Records=36
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=156
+		CPU time spent (ms)=1370
+		Physical memory (bytes) snapshot=358039552
+		Virtual memory (bytes) snapshot=3015614464
+		Total committed heap usage (bytes)=226365440
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=140
+	File Output Format Counters 
+		Bytes Written=141
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -ls /wordCountOut
+
+Found 2 items
+-rw-r--r--   1 cloudera supergroup          0 2020-09-28 23:57 /wordCountOut/_SUCCESS
+-rw-r--r--   1 cloudera supergroup        141 2020-09-28 23:57 /wordCountOut/part-r-00000
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -cat /wordCountOut/part-r-00000
+I	2
+Infrastructure	1
+MIT	5
+Professors	2
+am	2
+amazing	1
+are	1
+cool	1
+from	1
+hosting	1
+in	1
+is	2
+learn	1
+me	1
+of	1
+privilged	1
+studying	1
+to	1
+
+# To run python code
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop jar contrib/streaming/hadoop-streaming-mr1.jar \
+-file /home/cloudera/Desktop/mapreduce/mapper.py    -mapper /home/cloudera/Desktop/mapreduce/mapper.py \
+-file /home/cloudera/Desktop/mapreduce/reducer.py   -reducer /home/cloudera/Desktop/mapreduce/reducer.py \
+-input /inputdata.txt -output /PythonWordCountOut
+
+ additionalConfSpec_:null
+ null=@@@userJobConfProps_.get(stream.shipped.hadoopstreaming
+ packageJobJar: [/app/hadoop/tmp/hadoop-unjar54543/]
+ [] /tmp/streamjob54544.jar tmpDir=null
+ [...] INFO mapred.FileInputFormat: Total input paths to process : 7
+ [...] INFO streaming.StreamJob: getLocalDirs(): [/app/hadoop/tmp/mapred/local]
+ [...] INFO streaming.StreamJob: Running job: job_200803031615_0021
+ [...]
+ [...] INFO streaming.StreamJob:  map 0%  reduce 0%
+ [...] INFO streaming.StreamJob:  map 43%  reduce 0%
+ [...] INFO streaming.StreamJob:  map 86%  reduce 0%
+ [...] INFO streaming.StreamJob:  map 100%  reduce 0%
+ [...] INFO streaming.StreamJob:  map 100%  reduce 33%
+ [...] INFO streaming.StreamJob:  map 100%  reduce 70%
+ [...] INFO streaming.StreamJob:  map 100%  reduce 77%
+ [...] INFO streaming.StreamJob:  map 100%  reduce 100%
+ [...] INFO streaming.StreamJob: Job complete: job_200803031615_0021
+ [...] INFO streaming.StreamJob: Output: /PythonWordCountOut
+
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -ls /PythonWordCountOut
+
+Found 2 items
+-rw-r--r--   1 cloudera supergroup        141 2020-09-28 23:57 /wordCountOut/part-r-00000
+
+[cloudera@quickstart hadoop-0.20-mapreduce]$ hadoop fs -cat /PythonWordCountOut/part-r-00000
+I	2
+Infrastructure	1
+MIT	5
+Professors	2
+am	2
+amazing	1
+are	1
+cool	1
+from	1
+hosting	1
+in	1
+is	2
+learn	1
+me	1
+of	1
+privilged	1
+studying	1
+to	1
